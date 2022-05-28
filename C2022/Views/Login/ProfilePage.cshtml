@@ -1,0 +1,67 @@
+﻿@model DBAccess.Models.User
+@{
+    ViewData["Title"] = "Profile Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="px-4 py-5 my-5 text-center">
+    <img class="rounded-circle" src=@Model.ImageLink alt="" width="200" height="200">
+    <h1 class="display-5 fw-bold">@Model.UserName</h1>
+     </div>
+
+    <center>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">@Model.Bio</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Log Out</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Edit">Edit Profile</a>
+        </button>
+      </div>
+    </div>
+    </center>
+
+  <center>
+  <h1>Your Characters: </h1>
+  @if (Model.Characters!=null)
+  {
+        foreach (var item in Model.Characters)
+        {
+            <tr>
+                <td>
+                    <img class="rounded-circle" src=@item.ImageLink alt="" width="200" height="200">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)<br/>                    
+                </td>
+                <td>                 
+                    @Html.DisplayFor(modelItem => item.LastName)<br/>
+                </td>
+
+            </tr>
+        }
+   }
+
+   else
+   {
+       <h1>empty. create some:</h1>
+   }
+    <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Characters" asp-action="AddCharacter">Add</a>
+</button>
+     </center>
+
+</body>
+</html>
+

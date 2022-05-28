@@ -1,0 +1,83 @@
+﻿@model DBAccess.Models.Character
+@{
+    ViewData["Title"] = "Add Character";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body class="text-center" data-new-gr-c-s-check-loaded="14.1060.0" data-gr-ext-installed="">
+    
+<main class="form-signin w-100 m-auto">
+  <form asp-controller="CharactersApi" asp-action="Add">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h1 class="h3 mb-3 fw-normal">Sreate</h1>
+
+    <div class="form-floating">
+      <label asp-for="FirstName" for="floatingInput"></label>
+      <input asp-for="FirstName"  class="form-control"value="@Model.FirstName" placeholder="name@example.com">
+      <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+      <label asp-for="LastName" for="floatingInput"></label>
+      <input asp-for="LastName"  class="form-control"value="@Model.LastName" placeholder="bio">
+      <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+      <label asp-for="Bio" for="floatingInput"></label>
+      <input asp-for="Bio"  class="form-control"value="@Model.Bio" placeholder="bio">
+      <span asp-validation-for="Bio" class="text-danger"></span>
+    </div>
+
+    <div class="form-floating">
+      <label asp-for="Race" for="floatingInput"></label>
+      <input asp-for="Race"  class="form-control" value="@Model.Race" placeholder="Race">
+      <span asp-validation-for="Race" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+      <label asp-for="ImageLink" for="floatingInput"></label>
+      <input asp-for="ImageLink"  class="form-control" value="@Model.Race" placeholder="Race">
+      <span asp-validation-for="ImageLink" class="text-danger"></span>
+    </div>
+
+    <div <label asp-for="Strength" for="customRange2" class="form-label">Strength</label>
+    <input asp-for="Strength" class="form-range" min="0" max="10" id="Strength">
+     <span asp-validation-for="Strength" class="text-danger"></span>
+    </div>
+     <div <label asp-for="Intellect" for="customRange2" class="form-label">Intellect</label>
+    <input asp-for="Intellect" class="form-range" min="0" max="10" id="Strength">
+    <span asp-validation-for="Intellect" class="text-danger"></span>
+    </div>
+     <div <label asp-for="Charisma" for="customRange2" class="form-label">Charisma</label>
+    <input asp-for="Charisma" class="form-range" min="0" max="10" id="Strength">
+    <span asp-validation-for="Charisma" class="text-danger"></span>
+    </div>
+     <div <label asp-for="Wisdom" for="customRange2" class="form-label">Wisdom</label>
+    <input asp-for="Wisdom" class="form-range" min="0" max="10" id="Strength">
+    <span asp-validation-for="Wisdom" class="text-danger"></span>
+    </div>
+     <div <label asp-for="Dexterity" for="customRange2" class="form-label">Dexterity</label>
+    <input asp-for="Dexterity" class="form-range" min="0" max="10" id="Strength">
+    <span asp-validation-for="Dexterity" class="text-danger"></span>
+    </div>
+
+    <div class="form-floating">
+      <label asp-for="UserId" for="floatingPassword"></label>
+      <input asp-for="UserId" name="UserId" type="number" readonly="readonly" class="form-control" value="@Model.UserId" >
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>
+    <p class="mt-5 mb-3 text-muted">©2022</p>
+  </form>
+</main>
+
+</body>
+</html>
+

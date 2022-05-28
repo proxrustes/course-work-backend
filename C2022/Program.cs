@@ -13,7 +13,6 @@ namespace C2022
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine(123);
             CreateHostBuilder(args).Build().Run();
         }
 

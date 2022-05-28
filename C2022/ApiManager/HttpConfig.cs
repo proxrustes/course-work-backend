@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace C2022.ApiManager
@@ -11,7 +12,7 @@ namespace C2022.ApiManager
             using (HttpClient httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = new Uri(url);
-                httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 string response = await httpClient.GetStringAsync(httpClient.BaseAddress);
 

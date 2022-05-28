@@ -1,0 +1,40 @@
+﻿@using DBAccess.Models
+
+@model List<User>
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body class="text-center" data-new-gr-c-s-check-loaded="14.1060.0" data-gr-ext-installed="">
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <img class="rounded-circle" src=@item.ImageLink alt="" width="200" height="200">                
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)<br/>                    
+        </td>
+        <td>                 
+            @Html.DisplayFor(modelItem => item.Role)<br/>
+        </td>
+
+    </tr>
+}
+
+
+</body>
+</html>
+

@@ -19,12 +19,17 @@ namespace C2022.Controllers
         {
             _logger = logger;
         }
+
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-        
+        public IActionResult ProfilePage()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

@@ -1,0 +1,66 @@
+﻿@model DBAccess.Models.User
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body class="text-center" data-new-gr-c-s-check-loaded="14.1060.0" data-gr-ext-installed="">
+    
+<main class="form-signin w-100 m-auto">
+  <form asp-controller="UserApi" asp-action="Post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <label asp-for="UserName" for="floatingInput"></label>
+      <input asp-for="UserName"  class="form-control"value="@Model.UserName" placeholder=@Model.UserName>
+      <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    
+    <div class="form-floating">
+      <label asp-for="Bio" for="floatingInput"></label>
+      <input asp-for="Bio" class="form-control"value="@Model.Bio" placeholder="@Model.Bio>
+      <span asp-validation-for="Bio" class="text-danger"></span>
+    </div>
+
+    <div class="form-floating">
+      <label asp-for="Password" for="floatingPassword"></label>
+      <input asp-for="Password" name="Password" type="text" class="form-control" value="@Model.Password" placeholder=@Model.Password>
+      <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+      <label asp-for="ImageLink" for="floatingPassword"></label>
+      <input asp-for="ImageLink" name="ImageLink" type="text" class="form-control" value="@Model.ImageLink" placeholder=@Model.ImageLink>
+      <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+   <div class="form-floating">
+      <label asp-for="Role" for="floatingPassword"></label>
+      <input asp-for="Role" name="Role" readonly="readonly" type="text" class="form-control" value="@Model.Role">
+    </div>
+    <div class="form-floating">
+      <label asp-for="Characters" for="floatingPassword"></label>
+      <input asp-for="Characters" name="Role" readonly="readonly"  class="form-control" value="@Model.Characters">
+    </div>
+     <div class="form-floating">
+      <label asp-for="UserId" for="floatingPassword"></label>
+      <input asp-for="UserId" name="UserId" type="number" readonly="readonly" class="form-control" value="@Model.UserId" >
+      <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+    <p class="mt-5 mb-3 text-muted">©2022</p>
+  </form>
+</main>
+
+
+</body>
+</html>
+

@@ -1,16 +1,14 @@
 ﻿using DBAccess.Models;
 using DBAccess.Repositories;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 
 namespace C2022.Controllers
 {
-    [Route("api/users")]
-    [ApiController]
-    [Authorize]
+        [Route("users")]
+        [ApiController]
     public class UserController : Controller
     {
         public IRepositories<User> contextCustomers { get; private set; }
@@ -18,63 +16,31 @@ namespace C2022.Controllers
         public UserController(IRepositories<User> _context)
         {
             contextCustomers = _context;
-        }
 
-        [HttpGet("AuthTest")]
-        [Authorize]
-        public IActionResult AdminsEndpoint()
-        {
-            var currentUser = GetCurrentUser();
-
-            return Ok($"Hi {currentUser.UserName}, you are an little piece of shit");
         }
-
-        [HttpGet]
-        public IEnumerable<User> Get()
+        [HttpGet("browse")]
+        public IActionResult BrowseAll()
         {
-            return contextCustomers.GetAll();
-        }
-
-        [HttpGet("{id}")]
-        public ActionResult<User> Get(int id)
-        {
-            
-            return contextCustomers.Get(id);
-        }
-        
-        [HttpPost]
-        public void Post([FromQuery] User value)
-        {
-            contextCustomers.Add(value);
-        }
-        
-        [HttpPut("{id}")]
-        public void Put(int id, [FromQuery] User value)
-        {
-            contextCustomers.Update(value);
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-            contextCustomers.Delete(contextCustomers.Get(id));
-        }
-
-        private User GetCurrentUser()
-        {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-
-            if (identity != null)
+            if (HttpContext.Session.GetString("Role") == "Admin")
             {
-                var userClaims = identity.Claims;
-
-                return new User
-                {
-                    UserName = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier)?.Value,
-                    Role = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Role)?.Value
-                };
+                List<User> users = contextCustomers.GetAll();
+                return View("BrowseUsers", users);
             }
-            return null;
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpGet("edit")]
+        public IActionResult Edit()
+        {
+            if (HttpContext.Session.GetString("Id") != null)
+            {
+                User model = GetCurrent(int.Parse(HttpContext.Session.GetString("Id")));
+                return View("EditProfile", model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        public User? GetCurrent(int id)
+        {
+            return contextCustomers.Get(id);
         }
     }
 }

@@ -1,0 +1,43 @@
+﻿@model DBAccess.Models.UserLogin
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body class="text-center" data-new-gr-c-s-check-loaded="14.1060.0" data-gr-ext-installed="">
+    
+<main class="form-signin w-100 m-auto">
+  <form asp-controller="LoginApi" asp-action="Login">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <label asp-for="Username" for="floatingInput"></label>
+      <input asp-for="Username"  class="form-control" placeholder="name@example.com">
+      <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="form-floating">
+      <label asp-for="Password" for="floatingPassword"></label>
+      <input asp-for="Password" name="Password" type="text" class="form-control" value="@Model.Password" placeholder="Password">
+      <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">©2022</p>
+  </form>
+</main>
+
+
+</body>
+</html>
+

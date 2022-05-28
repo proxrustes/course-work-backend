@@ -1,0 +1,44 @@
+﻿@using DBAccess.Models
+
+@model List<Character>
+@{
+    ViewData["Title"] = "Browse Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+</head>
+<body class="text-center" data-new-gr-c-s-check-loaded="14.1060.0" data-gr-ext-installed="">
+
+
+<ul class="list-group list-group-flush">
+    
+@foreach (var item in Model)
+{
+    <li class="list-group-item">
+
+        <img class="rounded-circle" src=@item.ImageLink alt="" width="70" height="70" align="left"> 
+         @Html.DisplayFor(modelItem => item.FirstName)    
+          @Html.DisplayFor(modelItem => item.LastName)
+         <a href="https://localhost:44342/characters/view/@item.CharacterId" class="button">ViewProfile</a>
+    </li>
+    
+}
+
+</ul>
+
+
+</body>
+</html>
+

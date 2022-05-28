@@ -9,12 +9,11 @@ namespace C2022.Controllers
 {
     [Route("api/characters")]
     [ApiController]
-    [Authorize]
-    public class PersonController : Controller
+    public class CharactersApiController : Controller
     {
         public IRepositories<Character> contextCharacters { get; private set; }
 
-        public PersonController(IRepositories<Character> _context)
+        public CharactersApiController(IRepositories<Character> _context)
         {
             contextCharacters = _context;
         }
@@ -30,12 +29,12 @@ namespace C2022.Controllers
             return contextCharacters.Get(id);
         }
         [HttpPost]
-        public void Post([FromQuery] Character value)
+        public void Add([FromForm] Character value)
         {
             contextCharacters.Add(value);
         }
         [HttpPut("{id}")]
-        public void Put(int id, [FromQuery] Character value)
+        public void Put([FromForm] Character value)
         {
             contextCharacters.Update(value);
         }
