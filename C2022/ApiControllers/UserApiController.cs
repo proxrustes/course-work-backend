@@ -22,12 +22,6 @@ namespace C2022.Controllers
 
         }
 
-        [HttpGet("AuthTest")]
-        public IActionResult AdminsEndpoint()
-        {
-            var identity = HttpContext.Session.GetString("Name");
-            return Ok("Hello " + identity);
-        }
 
         [HttpGet]
         public List<User> GetAll()
@@ -42,17 +36,15 @@ namespace C2022.Controllers
         }
         
         [HttpPost]
-        public IActionResult Post([FromForm] User value)
+        public void Post([FromBody] User value)
         {
-            contextCustomers.Update(value);
-            return RedirectToAction("Redirection", "Login");
+            contextCustomers.Add(value);
         }
         
         [HttpPost("{id}")]
-        public IActionResult Put([FromForm] User value)
+        public void Put([FromBody] User value)
         {
             contextCustomers.Update(value);
-            return RedirectToAction("Redirection", "Login");
         }
 
         [HttpDelete("{id}")]

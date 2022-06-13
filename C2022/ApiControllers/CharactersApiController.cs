@@ -29,12 +29,12 @@ namespace C2022.Controllers
             return contextCharacters.Get(id);
         }
         [HttpPost]
-        public void Add([FromForm] Character value)
+        public void Add([FromBody] Character value)
         {
             contextCharacters.Add(value);
         }
-        [HttpPut("{id}")]
-        public void Put([FromForm] Character value)
+        [HttpPost("{id}")]
+        public void Put([FromBody] Character value)
         {
             contextCharacters.Update(value);
         }

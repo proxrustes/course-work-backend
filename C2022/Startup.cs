@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace C2022
 {
@@ -33,12 +34,12 @@ namespace C2022
             services.AddMvcCore();
             services.AddSession();
 
-            services.AddControllers();
-            services.AddControllersWithViews();
+            services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles); ;
+            //services.AddControllersWithViews();
             services.AddRazorPages();
 
             services.AddScoped<IRepositories<Character>, RepositoryCharacter>();
-            services.AddScoped<IRepositories<Image>, RepositoryImage>();
             services.AddScoped<IRepositories<User>, RepositoryUser>();
         }
          
@@ -62,7 +63,7 @@ namespace C2022
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapRazorPages();
+                //endpoints.MapRazorPages();
             });
         }
     }

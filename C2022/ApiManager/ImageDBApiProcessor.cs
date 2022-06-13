@@ -8,83 +8,83 @@ using System.Text.Json.Nodes;
 
 namespace C2022.ApiManager
 {
-    public class ImageDBApiProcessor
-    {
-        private readonly HttpConfig httpWorker;
+    //public class ImageDBApiProcessor
+    //{
+    //    private readonly HttpConfig httpWorker;
 
-        public ImageDBApiProcessor()
-        {
-            httpWorker = new HttpConfig();
-        }
+    //    public ImageDBApiProcessor()
+    //    {
+    //        httpWorker = new HttpConfig();
+    //    }
 
-        public Image getImageByCategory(string type, string category)
-        {
+    //    public Image getImageByCategory(string type, string category)
+    //    {
 
-            try
-            {
-                string url = SearchRandomImage(type, category);
-                string response = httpWorker.GetJsonResponse(url).Result;
+    //        try
+    //        {
+    //            string url = SearchRandomImage(type, category);
+    //            string response = httpWorker.GetJsonResponse(url).Result;
 
-                List<Image> result = ParseSearchingModel(response);
+    //            List<Image> result = ParseSearchingModel(response);
 
-                return result.FirstOrDefault();
+    //            return result.FirstOrDefault();
 
-            }
-            catch
-            {
-                throw new Exception($"Search is not valid: {category}");
-            }
-        }
-        public List<Image> getImageByCategoryMany(string type, string category)
-        {
+    //        }
+    //        catch
+    //        {
+    //            throw new Exception($"Search is not valid: {category}");
+    //        }
+    //    }
+    //    public List<Image> getImageByCategoryMany(string type, string category)
+    //    {
 
-            string url = SearchInBulk(type, category);
-            string response = httpWorker.GetJsonResponse(url).Result;
-            return ParseSearchingModels(response);
-        }
+    //        string url = SearchInBulk(type, category);
+    //        string response = httpWorker.GetJsonResponse(url).Result;
+    //        return ParseSearchingModels(response);
+    //    }
        
-        private string SearchRandomImage(string type, string category) => @$"https://api.waifu.pics/{type}/{category}";
-        private string SearchInBulk(string type, string category) => @$"https://api.waifu.pics/many/{type}/{category}";
+    //    private string SearchRandomImage(string type, string category) => @$"https://api.waifu.pics/{type}/{category}";
+    //    private string SearchInBulk(string type, string category) => @$"https://api.waifu.pics/many/{type}/{category}";
 
-        //get single image
-        private List<Image>? ParseSearchingModel(string json)
-        {
-            List<Image> searchingModels = new List<Image>();
-            JObject images = JObject.Parse(json);
+    //    //get single image
+    //    private List<Image>? ParseSearchingModel(string json)
+    //    {
+    //        List<Image> searchingModels = new List<Image>();
+    //        JObject images = JObject.Parse(json);
 
-            var imagesArray =
-                from c in images["url"]
-                select c;
+    //        var imagesArray =
+    //            from c in images["url"]
+    //            select c;
 
-            foreach (var item in imagesArray)
-            {
-                Image s = new Image { Link = (string)item["url"] };
-                searchingModels?.Add(s);
-            }
+    //        foreach (var item in imagesArray)
+    //        {
+    //            Image s = new Image { Link = (string)item["url"] };
+    //            searchingModels?.Add(s);
+    //        }
 
-            if (searchingModels == null)
-                return null;
+    //        if (searchingModels == null)
+    //            return null;
 
-            return searchingModels;
-        }
-        //get 30 image links
-        private List<Image>? ParseSearchingModels(string json)
-        {
-            JsonObject obj = JsonNode.Parse(json).AsObject();
-            JsonArray jsonArray = (JsonArray)obj["files"];
-            string jsonString = jsonArray.ToString();
-            List<string> listS = JsonConvert.DeserializeObject<List<string>>(jsonString);
-            List<Image> searching = new List<Image>();
+    //        return searchingModels;
+    //    }
+    //    //get 30 image links
+    //    private List<Image>? ParseSearchingModels(string json)
+    //    {
+    //        JsonObject obj = JsonNode.Parse(json).AsObject();
+    //        JsonArray jsonArray = (JsonArray)obj["files"];
+    //        string jsonString = jsonArray.ToString();
+    //        List<string> listS = JsonConvert.DeserializeObject<List<string>>(jsonString);
+    //        List<Image> searching = new List<Image>();
 
-            foreach (string link in listS)
-            {
-                searching.Add(new Image { Link = link });
-            }
+    //        foreach (string link in listS)
+    //        {
+    //            searching.Add(new Image { Link = link });
+    //        }
 
-            if (searching == null)
-                return null;
+    //        if (searching == null)
+    //            return null;
 
-            return searching;
-        }
-    }
+    //        return searching;
+    //    }
+    //}
 }

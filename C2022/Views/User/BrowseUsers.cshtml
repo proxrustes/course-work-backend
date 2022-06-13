@@ -8,27 +8,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
 <body class="text-center" data-new-gr-c-s-check-loaded="14.1060.0" data-gr-ext-installed="">
 
 @foreach (var item in Model)
 {
     <tr>
         <td>
-            <img class="rounded-circle" src=@item.ImageLink alt="" width="200" height="200">                
+            <img class="rounded-circle" src=@item.imageLink alt="" width="200" height="200">                
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)<br/>                    
+            @Html.DisplayFor(modelItem => item.userName)<br/>                    
         </td>
         <td>                 
-            @Html.DisplayFor(modelItem => item.Role)<br/>
+            @Html.DisplayFor(modelItem => item.role)<br/>
         </td>
 
     </tr>
